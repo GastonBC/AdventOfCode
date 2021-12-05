@@ -21,7 +21,6 @@ def most_common_n(lst):
     data = Counter(lst)
 
     two_most_common = data.most_common(2)
-    
     # draw condition, draw in the counting
     if two_most_common[0][1] == two_most_common[1][1]:
         return '-1'
@@ -44,6 +43,7 @@ def least_common(lst):
 sample = [
     "00100",
     "11110",
+    "10110",
     "10111",
     "10101",
     "01111",
@@ -77,24 +77,37 @@ for idx in range(0, len(power_input[0])):
         o2_code = o2_rating[0]
         break
 
+    # if len(o2_rating) == 2: # TODO this is to be fixed, the filter does not remove items
+    #                         # if only two items and a it's draw is left
+    #     o2_code = [i for i in o2_rating if i[-1] == "1"][0]
+    #     break
+
     char = most_common_at_idx(idx, o2_rating)
     for item in o2_rating.copy():
         if item[idx] != char:
             o2_rating.remove(item)
             
 
-# # --- co2 ---
-# for idx in range(0, len(power_input[0])):
+# --- co2 ---
+for idx in range(0, len(power_input[0])):
     
-#     if len(co2_rating) == 1:
-#         co2_code = co2_rating[0]
-#         break
+    if len(co2_rating) == 1:
+        co2_code = co2_rating[0]
+        break
 
-#     char = least_common_at_idx(idx, co2_rating)
+    char = least_common_at_idx(idx, co2_rating)
 
-#     for item in co2_rating.copy():
-#         if item[idx] != char:
-#             co2_rating.remove(item)
+    for item in co2_rating.copy():
+        if item[idx] != char:
+            co2_rating.remove(item)
 
-print(o2_code)
+print(o2_rating)
 print(co2_code)
+
+print("o2_code in binary: {}".format(o2_code))
+print("co2_code in binary: {}".format(co2_code))
+print()
+print("o2_code in int: {}".format(int(o2_code, 2)))
+print("co2_code in int: {}".format(int(co2_code, 2)))
+print()
+print("Result: {}".format(int(o2_code, 2)*int(co2_code, 2)))
