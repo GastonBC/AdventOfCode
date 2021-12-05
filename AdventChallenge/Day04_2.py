@@ -60,14 +60,14 @@ for num in number_input:
 
             winning_boards.append((idx, boards_np[idx].flatten().tolist())) 
 
-            if len(winning_boards) == len(boards_np):
+            # all boards have marked at least one column/row, the answer for this part is
+            # the last winning board
+            if len(winning_boards) == len(boards_np):                  
                 losing_board = bds_np_static[idx].flatten().tolist()
-                losing_board_noned = winning_boards[-1][1]
-                print(losing_board)
-                print(losing_board_noned)
+                losing_board_noned = boards_np[idx].flatten().tolist()
+                last_called_number = num
 
                 break_loop = True
-                last_called_number = num
                 break
 
     if break_loop:
@@ -85,3 +85,10 @@ for idx, val in enumerate(losing_board_noned):
 print("Winning sum result: {}".format(sum_winning_nums))
 print("Last called number: {}".format(last_called_number))
 print("Result: {}".format(sum_winning_nums*last_called_number))
+
+
+'''
+Winning sum result: 192
+Last called number: 38
+Result: 7296
+'''
