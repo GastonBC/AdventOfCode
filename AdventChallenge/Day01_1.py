@@ -1,6 +1,6 @@
 import Inputs
 
-measurements = Inputs.Day01_1()
+measurements = Inputs.Day01()
 
 increase_count = 0
 

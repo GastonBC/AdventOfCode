@@ -34,7 +34,7 @@ class Submarine(object):
 
 sub = Submarine()
 
-for action, val in Inputs.Day02_2():
+for action, val in Inputs.Day02():
     if action == "forward":
         sub.forward(val)
 

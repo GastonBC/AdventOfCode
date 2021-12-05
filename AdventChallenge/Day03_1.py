@@ -1,7 +1,7 @@
 import Inputs
 from collections import Counter
 
-power_input = Inputs.Day03_1()
+power_input = Inputs.Day03()
 
 gamma = ""
 epsilon = ""
