@@ -47,3 +47,9 @@ for action, val in Inputs.Day02():
 print("Submarine forwards distance: {}".format(sub.x))
 print("Submarine depth: {}".format(sub.y))
 print("Result: {}".format(sub.x*sub.y))
+
+'''
+Submarine forwards distance: 2053
+Submarine depth: 1041589
+Result: 2138382217
+'''

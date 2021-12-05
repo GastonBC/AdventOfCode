@@ -36,12 +36,14 @@ print("Result: {}".format(int(gamma, 2)*int(epsilon, 2)))
 
     
 
-# Gamma in bytes: 101110111100
-# Epsilon in bytes: 010001000011
+'''
+Gamma in bytes: 101110111100
+Epsilon in bytes: 010001000011
 
-# Gamma in int: 3004
-# Epsilon in int: 1091
+Gamma in int: 3004
+Epsilon in int: 1091
 
-# Result: 3277364
+Result: 3277364
+'''
     
     

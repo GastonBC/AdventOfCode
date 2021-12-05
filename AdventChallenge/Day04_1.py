@@ -50,3 +50,9 @@ for idx, val in enumerate(winning_board_noned):
 print("Winning sum result: {}".format(sum_winning_nums))
 print("Last called number: {}".format(last_called_number))
 print("Result: {}".format(sum_winning_nums*last_called_number))
+
+'''
+Winning sum result: 899
+Last called number: 99
+Result: 89001
+'''

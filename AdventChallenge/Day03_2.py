@@ -55,8 +55,8 @@ sample = [
     "01010"
 ]
 
-# power_input = Inputs.Day03()
-power_input = sample
+power_input = Inputs.Day03()
+# power_input = sample
 
 # o2_rating
 # co2_rating
@@ -74,13 +74,13 @@ co2_code = ""
 for idx in range(0, len(power_input[0])):
     # --- o2 ---
     if len(o2_rating) == 1:
-        o2_code = o2_rating[0]
+        # o2_code = o2_rating[0] # THIS DOESN'T WORK WHY
         break
 
-    # if len(o2_rating) == 2: # TODO this is to be fixed, the filter does not remove items
-    #                         # if only two items and a it's draw is left
-    #     o2_code = [i for i in o2_rating if i[-1] == "1"][0]
-    #     break
+    if len(o2_rating) == 2: # TODO this is to be fixed, the filter does not remove items
+                            # if only two items and a it's draw is left
+        o2_code = [i for i in o2_rating if i[-1] == "1"][0]
+        break
 
     char = most_common_at_idx(idx, o2_rating)
     for item in o2_rating.copy():
@@ -101,7 +101,8 @@ for idx in range(0, len(power_input[0])):
         if item[idx] != char:
             co2_rating.remove(item)
 
-print(o2_rating)
+
+print(o2_code)
 print(co2_code)
 
 print("o2_code in binary: {}".format(o2_code))
@@ -111,3 +112,16 @@ print("o2_code in int: {}".format(int(o2_code, 2)))
 print("co2_code in int: {}".format(int(co2_code, 2)))
 print()
 print("Result: {}".format(int(o2_code, 2)*int(co2_code, 2)))
+
+
+'''
+110111111111
+011001000001
+o2_code in binary: 110111111111
+co2_code in binary: 011001000001
+
+o2_code in int: 3583
+co2_code in int: 1601
+
+Result: 5736383
+'''
