@@ -72,6 +72,7 @@ for pseudo_line in input_lines:
 
 ortho_lines = [l for l in lines if l.is_ortho()]
 intercepts = 0
+visited_points = []
 
 for idx1, line1 in enumerate(ortho_lines):
     points_l1 = line1.all_points()
@@ -82,9 +83,10 @@ for idx1, line1 in enumerate(ortho_lines):
 
         points_l2 = line2.all_points()
         for p in points_l1:
-            if p in points_l2:
+            if p in points_l2 and p not in visited_points:
+                visited_points.append(p)
                 intercepts += 1
 
 print(intercepts)
 
-# TODO, answer too high, probably because points which are intercepted more than two times only count once
+# TODO, this works, but there has to be a faster way
