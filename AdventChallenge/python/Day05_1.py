@@ -13,34 +13,12 @@ sample = [((0,9), (5,9)),
           ((0,9), (2,9)),
           ((3,4), (1,4)),
           ((0,0), (8,8)),
-          ((5,5), (8,2))]
-
-# visualization
-sample = Inputs.Day05()
-
-for line in sample:
-    point1 = line[0]
-    point2 = line[1]
-
-    x_values = [point1[0], point2[0]]
-
-    y_values = [point1[1], point2[1]]
-
-
-    plt.plot(x_values, y_values)
-
-plt.show()
-# visualization
-
-
-input_lines = Inputs.Day05()
-lines = []
+          ((5,5), (8,2)) ]
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
 
 class Line:
     def __init__(self, p1: Point, p2: Point):
@@ -82,7 +60,22 @@ class Line:
 
         return points
 
+input_lines = Inputs.Day05()
+lines = []
 
+# visualization
+
+for line in input_lines:
+    point1 = line[0]
+    point2 = line[1]
+
+    x_values = [point1[0], point2[0]]
+
+    y_values = [point1[1], point2[1]]
+
+
+    plt.plot(x_values, y_values)
+# visualization
 
 for pseudo_line in input_lines:
     p1 = Point(pseudo_line[0][0], pseudo_line[0][1])
@@ -108,6 +101,13 @@ for idx1, line1 in enumerate(ortho_lines):
                 intercepts += 1
 
 print(intercepts)
+
+# visualization
+ptx = [p[0] for p in visited_points]
+pty = [p[1] for p in visited_points]
+plt.plot(ptx, pty, "v")
+plt.show()
+# visualization
 
 # TODO, this works, but there has to be a faster way
 
