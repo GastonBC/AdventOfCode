@@ -23,8 +23,9 @@ for x in range(len(sample)):
     if x == 0:
         continue
 
-    point1 = (x-1, sample[x-1])
-    point2 = (x, sample[x])
+    a = len(sample)-x
+    point1 = (x, sample[a])
+    point2 = (x+1, sample[a-1])
 
     x_values = [point1[0], point2[0]]
 
