@@ -90,3 +90,7 @@ for idx1, line1 in enumerate(ortho_lines):
 print(intercepts)
 
 # TODO, this works, but there has to be a faster way
+
+'''
+6311 intercepts
+'''
