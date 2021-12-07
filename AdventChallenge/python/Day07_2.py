@@ -1,4 +1,3 @@
-from decimal import ROUND_DOWN
 import statistics
 import Inputs
 import math
@@ -20,7 +19,7 @@ def get_usage(puzzle, point):
     return fuel_usage
 
 
-# the "correct" mean will be +- 0.5 from the real mean so will have to test both to find the
+# the "correct" mean will be +- 0.5 from the real mean so we'll have to test both to find the
 # least fuel usage
 closest_point = [statistics.mean(puzzle_input)+0.5, statistics.mean(puzzle_input)-0.5]
 
