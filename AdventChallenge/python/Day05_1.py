@@ -2,6 +2,8 @@ import Inputs
 import numpy as np
 import math
 
+import matplotlib.pyplot as plt
+
 sample = [((0,9), (5,9)),
           ((8,0), (0,8)),
           ((9,4), (3,4)),
@@ -12,6 +14,24 @@ sample = [((0,9), (5,9)),
           ((3,4), (1,4)),
           ((0,0), (8,8)),
           ((5,5), (8,2))]
+
+# visualization
+sample = Inputs.Day05()
+
+for line in sample:
+    point1 = line[0]
+    point2 = line[1]
+
+    x_values = [point1[0], point2[0]]
+
+    y_values = [point1[1], point2[1]]
+
+
+    plt.plot(x_values, y_values)
+
+plt.show()
+# visualization
+
 
 input_lines = Inputs.Day05()
 lines = []
