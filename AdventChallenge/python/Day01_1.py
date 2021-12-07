@@ -20,12 +20,11 @@ import matplotlib.pyplot as plt
 sample = Inputs.Day01()
 
 for x in range(len(sample)):
-    if x == 0:
-        continue
+    if x == len(sample)-1:
+        break
 
-    a = len(sample)-x
-    point1 = (x, sample[a])
-    point2 = (x+1, sample[a-1])
+    point1 = (x, -sample[x])
+    point2 = (x+1, -sample[x+1])
 
     x_values = [point1[0], point2[0]]
 
