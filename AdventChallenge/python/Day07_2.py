@@ -1,6 +1,6 @@
 import statistics
 import Inputs
-import math
+
 sample = [16,1,2,0,4,2,7,1,2,14]
 
 puzzle_input = Inputs.Day07()
@@ -37,5 +37,5 @@ min_usage = min(usages, key = lambda t: t[1])
 print(f'Total fuel usage: {min_usage[1]} at {min_usage[0]}')
 
 '''
-Total fuel usage: 97164301
+Total fuel usage: 97164301 at 465
 '''
