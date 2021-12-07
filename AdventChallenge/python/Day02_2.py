@@ -14,6 +14,7 @@ up, down, y
 
 '''
 import Inputs
+import matplotlib.pyplot as plt
 
 class Submarine(object):
     def __init__(self):
@@ -34,6 +35,7 @@ class Submarine(object):
 
 sub = Submarine()
 
+old_point = (0, 0)
 for action, val in Inputs.Day02():
     if action == "forward":
         sub.forward(val)
@@ -43,6 +45,12 @@ for action, val in Inputs.Day02():
     
     elif action == "up":
         sub.up(val)
+
+    plt.plot([old_point[0], sub.x], [old_point[1], -sub.y])
+
+    old_point = (sub.x, -sub.y)
+
+plt.show()
 
 print("Submarine forwards distance: {}".format(sub.x))
 print("Submarine depth: {}".format(sub.y))
