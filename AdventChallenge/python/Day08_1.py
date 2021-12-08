@@ -40,8 +40,6 @@ Digits by segments
 2 SEGMENTS: 1
 '''
 
-
-
 def missing_segments(encoded_number, code_by_pos):
    '''Returns the ammount of missing segments at [0] and a list of those segments in [1]'''
    n = 0
@@ -68,6 +66,8 @@ def decode_number(number_by_pos, mapped_positions):
       # If all characters and only those (hence the len check)
       # in the mapped positions belong to the number provided, then return
       # the index (numbers are ordered in the list)
+
+      # Not using number_by_pos == num because they can be in different order
       if (all(ch in num and len(num) == len(num_by_pos) for ch in number_by_pos)):
          return idx
 
@@ -81,16 +81,10 @@ for entry in Inputs.Day08():
    CodeByPosition = [None, None, None, None, None, None, None]
    NumbersEncoded = [None, None, None, None, None, None, None, None, None, None]
 
-   
-
    segms_6 = []
    segms_5 = []
 
-   # TODO need to add while loop to go over the entry again and again until all numbers are done
-   #      update: testing didn't show that was needed
-
    # First annotate which numbers have unique lengths
-
    for EncodedNumber in entry[0]:
       if len(EncodedNumber) == 2:
          NumbersEncoded[1] = EncodedNumber
