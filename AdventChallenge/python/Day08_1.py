@@ -1,7 +1,5 @@
 '''
-
-
-                   positions 0 to 6
+                     positions 0 to 6
 Code by position = [x, x, x, x, x, x, x]
 
       1
@@ -14,23 +12,25 @@ Code by position = [x, x, x, x, x, x, x]
     gggg 
       4
 
-tips:
-1. the two letters equal in 1, 7 give out the code for position 1 (the one left in 7)
+Thought process:
+1. The two segments equal in 1, 7 give out the code for position 1 (the one left in 7)
 
-
-6. position 6 is the only one not present in numbers 4 (unique) compared to 0 (the only one without
-   that position)
+6. Position 6 is the only one not present in numbers 4 (unique) compared to 0 (the only one
+   in segs_5 without a segment in that position)
 
 2, 3. Pos 2 is present 2 times in segms_6, pos 3 is present 3 times
 
-4. pos 4 is given out by the only unknown segment in 3 (the only number in segms_5 
+4. Pos 4 is given out by the only unknown segment in 3 (the only number in segms_5 
     with all the known codes so far)
 
 0. Given by the only segment left in number 4
 
 5. Given by the only segment left in number 0
 
-digits by segments
+Now we have all the positions covered with it's coded counterparts, we can crack any number
+using num_to_positions() and decode_number()
+
+Digits by segments
 
 7 SEGMENTS: 8
 6 SEGMENTS: 0, 6, 9
@@ -54,6 +54,7 @@ def missing_segments(encoded_number, code_by_pos):
    return (n, mis_segs)
 
 def num_to_positions(encoded_number: str, code_by_pos):
+   '''Maps the input encoded number to it's positions given the mapping given'''
    num = ""
    for ch in encoded_number:
       num += str(code_by_pos.index(ch))
@@ -61,6 +62,7 @@ def num_to_positions(encoded_number: str, code_by_pos):
    return num
    
 def decode_number(number_by_pos, mapped_positions):
+   '''Decodes a mapped number to it's int counterpart'''
    for idx, num in enumerate(mapped_positions):
 
       # If all characters and only those (hence the len check)
