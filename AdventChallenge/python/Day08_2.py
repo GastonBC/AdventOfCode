@@ -72,8 +72,7 @@ def decode_number(number_by_pos, mapped_positions):
 import Inputs
 
 NumsByPositions = ["012345", "23", "12456", "12346", "0236", "01346", "013456", "123", "0123456", "012346"]
-answer_count = 0
-
+answer = 0
 
 for entry in Inputs.Day08():
    CodeByPosition = [None, None, None, None, None, None, None]
@@ -152,17 +151,16 @@ for entry in Inputs.Day08():
    #pos 5
    CodeByPosition[5] = missing_segments(NumbersEncoded[0], CodeByPosition)[1][0]
 
-
+   output = ""
    # map the output
    for enc_number in entry[1]:
       num_by_pos = num_to_positions(enc_number, CodeByPosition)
-      if decode_number(num_by_pos, NumsByPositions) == 1 or \
-         decode_number(num_by_pos, NumsByPositions) == 4 or \
-         decode_number(num_by_pos, NumsByPositions) == 7 or \
-         decode_number(num_by_pos, NumsByPositions) == 8:
-         answer_count += 1
 
-print("Answer is", answer_count)
+      output += str(decode_number(num_by_pos, NumsByPositions))
+   
+   answer += int(output)
+
+print("Answer is", answer)
 
 '''
 Answer is 470
