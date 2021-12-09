@@ -1,8 +1,10 @@
+use puzzle_inputs;
 
 fn main() {
+    
     let mut increase_count = 0;
     
-    let measurements = Day01();
+    let measurements = puzzle_inputs::inputs::Day01();
     for (idx, m) in measurements.iter().enumerate()
     {
         if idx == 0
