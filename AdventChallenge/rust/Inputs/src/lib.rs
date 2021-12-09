@@ -1,25 +1,13 @@
-
-fn main() {
-    let mut increase_count = 0;
-    
-    let measurements = Day01();
-    for (idx, m) in measurements.iter().enumerate()
-    {
-        if idx == 0
-        {
-            continue;
-        }
-        if m > &measurements[idx-1]
-        {
-            increase_count += 1;
-        }
+#[cfg(test)]
+pub mod tests {
+    #[test]
+    fn it_works() {
+        let result = 2 + 2;
+        assert_eq!(result, 4);
     }
-    println!("Answer {}", increase_count)
-}
 
-
-fn Day01() -> Vec<i32>
-{
+    pub fn Day01() -> Vec<i32>
+    {
     return vec![
     100,
     125,
@@ -2022,4 +2010,6 @@ fn Day01() -> Vec<i32>
     10041,
     10044]
         
+}
+
 }

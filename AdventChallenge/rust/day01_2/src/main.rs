@@ -2,14 +2,18 @@
 fn main() {
     let mut increase_count = 0;
     
-    let measurements = Day01();
-    for (idx, m) in measurements.iter().enumerate()
+    let measurements = day01();
+    for (idx, _) in measurements.iter().enumerate()
     {
-        if idx == 0
+        if idx == measurements.iter().count()-3
         {
-            continue;
+            break;
         }
-        if m > &measurements[idx-1]
+
+        let a = measurements[idx] + measurements[idx+1] + measurements[idx+2];
+        let b = measurements[idx+1] + measurements[idx+2] + measurements[idx+3];
+  
+        if b > a
         {
             increase_count += 1;
         }
@@ -18,7 +22,7 @@ fn main() {
 }
 
 
-fn Day01() -> Vec<i32>
+fn day01() -> Vec<i32>
 {
     return vec![
     100,
