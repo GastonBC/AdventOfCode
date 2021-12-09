@@ -7,14 +7,7 @@
 3   8767896789
 4   9899965678
 
-Check if a value is bounded by a 9 (divider of basins)
-Add it to a list of basins like lst_basins = [ [basin1], [basin2], ... ]
-While all points in a basin are not bounded by a 9, repeat
-
-is_part_of_basin checks if the number is part of a basin
-
 '''
-
 import Inputs
 
 # ADYACENT POSITIONS AS VALUES
@@ -131,34 +124,36 @@ sample = [
 puz_input = Inputs.Day09()
 # puz_input = sample
 
-# convert list of strings to list of list of chars
+low_points = []
+basin_lst = []
+
+# Convert list of strings to list of list of chars
 for row_idx, row in enumerate(puz_input):
     lst = []
     word = puz_input[row_idx]
     lst.extend(puz_input[row_idx])
     puz_input[row_idx] = lst
     
-low_points = []
 
-basin_lst = []
-
-# start from a low point and expand from there
+# Make a list with the low points in the map
 for row_idx, row in enumerate(puz_input):
     for col_idx, col in enumerate(row):
         pos = Position(row_idx, col_idx, puz_input)
         if pos.is_low_point():
             low_points.append(pos)
-            
-# by basin
+
+
+# Start crawling from the low points in the map
 for low_pt in low_points:
     basin = [low_pt.id]  
-    
+    old_basin_count = 0
+
     n=0
     
     # clean list
-    while n<1000:
+    while len(basin) != old_basin_count:
         n += 1
-
+        old_basin_count = len(basin)
         for pt_id in basin.copy():
             pt = Position(pt_id[0], pt_id[1], puz_input)
 
@@ -172,4 +167,14 @@ for low_pt in low_points:
     basin_lst.append(basin)
 
 sorted_lst = sorted(basin_lst, key = len)
-print(len(sorted_lst[-1]),len(sorted_lst[-2]),len(sorted_lst[-3]))
+
+answer = len(sorted_lst[-1])*len(sorted_lst[-2])*len(sorted_lst[-3])
+
+print(len(sorted_lst[-1]), len(sorted_lst[-2]), len(sorted_lst[-3]))
+print(f"Answer is {answer}")
+
+'''
+119 99 97
+1142757
+
+'''
