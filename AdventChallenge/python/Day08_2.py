@@ -15,9 +15,6 @@ Code by position = [x, x, x, x, x, x, x]
 Thought process:
 1. The two segments equal in 1, 7 give out the code for position 1 (the one left in 7)
 
-6. Position 6 is the only one not present in numbers 4 (unique) compared to 0 (the only one
-   in segs_5 without a segment in that position)
-
 2, 3. Pos 2 is present 2 times in segms_6, pos 3 is present 3 times
 
 4. Pos 4 is given out by the only unknown segment in 3 (the only number in segms_5 
