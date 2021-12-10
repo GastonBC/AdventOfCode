@@ -35,7 +35,7 @@ def check(chunks):
 
             # Correctly closed chunk
             if opening.index(stack[-1]) == idx:
-                stack.pop(-1)
+                stack.pop()
                 continue
 
             # incorrectly closed chunk

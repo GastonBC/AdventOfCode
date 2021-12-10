@@ -42,7 +42,7 @@ def check(chunks):
 
             # Correctly closed chunk is the last item in the list
             if opening.index(stack[-1]) == idx:
-                stack.pop(-1)
+                stack.pop()
                 continue
 
             # incorrectly closed chunk
