@@ -13,17 +13,18 @@ sample = [  r"[({(<(())[]>[[{[]{<()<>>",
 
 def get_points(ch_stack):
     score = 0
+    prizes = {
+            '(': 1,
+            '[': 2,
+            '{': 3,
+            '<': 4
+        }
+
     for ch in ch_stack:
         score = score * 5
-        prizes = {
-                    '(': 1,
-                    '[': 2,
-                    '{': 3,
-                    '<': 4
-                }
-
         char_points = prizes.get(ch, 0)
         score += char_points    
+        
     return score
 
 
