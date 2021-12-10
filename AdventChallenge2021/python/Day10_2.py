@@ -76,5 +76,5 @@ middle_score = points[mid_idx]
 print(f"Answer is {middle_score}")
 
 '''
-Answer is 
+Answer is 3042730309
 '''
