@@ -9,14 +9,14 @@ sample = [[5,4,8,3,1,4,3,2,2,3],
           [4,8,4,6,8,4,8,5,5,4],
           [5,2,8,3,7,5,1,5,2,6]]
 
-
 import numpy as np
 import Inputs
 
 puz_arr = np.array(Inputs.Day11())
-steps = 101
+steps = 0
 total_flashes = 0
-for i in range(1, steps):
+while True:
+    steps += 1
     puz_arr += 1
     
     # TODO center numbers are being affected by neighbors crashes, that shouldn't happen
@@ -42,7 +42,11 @@ for i in range(1, steps):
 
     for x, y in flashed:
         puz_arr[x, y] = 0
-    total_flashes+=len(flashed)
 
-    print(f"AFTER DAY {i}: {total_flashes} flashes")
+    total_flashes+=len(flashed)
+    print(f"AFTER DAY {steps}: {total_flashes} flashes")
+        
+    if (len(flashed) == puz_arr.size):
+        print("All fish flashing at the same time!")
+        break
         
