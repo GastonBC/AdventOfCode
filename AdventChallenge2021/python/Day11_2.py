@@ -14,22 +14,25 @@ import Inputs
 
 puz_arr = np.array(Inputs.Day11())
 steps = 0
-total_flashes = 0
+
 while True:
     steps += 1
     puz_arr += 1
     
-    # TODO center numbers are being affected by neighbors crashes, that shouldn't happen
-    # all flashes occur at the same time
-    
-    # Temp solution is to ignore to_flash in the flash() func
+    # Get indices of elements bigger than 9
     to_flash = np.transpose(np.nonzero(puz_arr > 9))
+
+    # This list will be used to reset the counter of affected fishes more than once
     flashed = []
+
     while len(to_flash):
-        
-        # find indices of elems bigger than 9
         for x, y in to_flash:
+
+            # Do not add one to already affected fishes this step
             if (x,y) not in flashed:
+
+                # Gets the 3x3 box around the element, if it's
+                # a corner/edge situation, truncate the box
                 box = np.s_[max(0, x - 1):x + 2, max(0, y - 1):y + 2]
                 
                 puz_arr[box] += 1
@@ -38,15 +41,14 @@ while True:
         to_flash = np.transpose(np.nonzero(puz_arr > 9))
 
         puz_arr = np.where(puz_arr <= 9, puz_arr, 0) # returns an array where the 10s are 
-#                                                   # converted to 0       
+                                                     # converted to 0       
 
+    # Reset the flashed fishes that have been affected more than once to 0
     for x, y in flashed:
         puz_arr[x, y] = 0
 
-    total_flashes+=len(flashed)
-    print(f"AFTER DAY {steps}: {total_flashes} flashes")
-        
     if (len(flashed) == puz_arr.size):
-        print("All fish flashing at the same time!")
+        print(f"All fish flashing at the same time on day {steps}!")
         break
         
+'''All fish flashing at the same time on day {steps}!'''
