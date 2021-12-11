@@ -9,7 +9,7 @@ sample = [[5,4,8,3,1,4,3,2,2,3],
           [4,8,4,6,8,4,8,5,5,4],
           [5,2,8,3,7,5,1,5,2,6]]
 
-def neighbours(arr, idx):
+def flash(arr, idx):
     '''Returns (top, 
                 topR, 
                 right, 
@@ -31,67 +31,66 @@ def neighbours(arr, idx):
     shape = np.shape(arr)
     shape = (shape[0]-1, shape[1]-1) # make zero based
 
+
     # Top
     if idx[0] != 0:
-        top = arr[idx[0]-1, idx[1]]
+        arr[idx[0]-1, idx[1]] += 1
     
     # Top right
     if idx[0] != 0 and idx[1] != shape[1]:
-        topR = arr[idx[0]-1, idx[1]+1]
+        arr[idx[0]-1, idx[1]+1] += 1
     
     # Right
     if idx[1] != shape[1]:
-        right = arr[idx[0], idx[1]+1]
+        arr[idx[0], idx[1]+1] += 1
     
     # Right down
     if idx[0] != shape[0] and idx[1] != shape[1]:
-        rightD = arr[idx[0]+1, idx[1]+1]
+        arr[idx[0]+1, idx[1]+1] += 1
     
     # Down
     if idx[0] != shape[0]:
-        down = arr[idx[0]+1, idx[1]]
+        arr[idx[0]+1, idx[1]] += 1
     
     # Down left
     if idx[0] != shape[0] and idx[1] != 0:
-        downL = arr[idx[0]+1, idx[1]-1]
+        arr[idx[0]+1, idx[1]-1] += 1
     
     # Left
     if idx[1] != 0:
-        left = arr[idx[0], idx[1]-1]
+        arr[idx[0], idx[1]-1] += 1
     
     # Left top
     if idx[0] != 0 and idx[1] != 0:
-        leftT = arr[idx[0]-1, idx[1]-1]
+        arr[idx[0]-1, idx[1]-1] += 1
 
-    return (top, topR, right, rightD, down, downL, left, leftT)
+    return arr
 
 import numpy as np
 
 
 puz_arr = np.array(sample)
-steps = 2
+steps = 10
 
-for i in range(steps):
+for i in range(1, steps):
     puz_arr += 1
-    print(puz_arr)
+    
+    # TODO center numbers are being affected by neighbors crashes, that shouldn't happen
+    # all flashes occur at the same time
+
+    # Temp solution is to ignore to_flash in the flash() func
     while np.any(puz_arr > 9):
+        to_flash = np.transpose(np.nonzero(puz_arr > 9))
 
+        puz_arr = np.where(puz_arr <= 9, puz_arr, 0) # returns an array where the 10s are 
+                                                # converted to 0
+        
         # find indices of elems bigger than 9
-        for idx in np.transpose(np.nonzero(puz_arr > 9)):
-            neigh = neighbours(puz_arr, idx)
-
-            print(f"idx        {idx}")
-            print(f"top        {neigh[0]}")
-            print(f"top right  {neigh[1]}")
-            print(f"right      {neigh[2]}")
-            print(f"right down {neigh[3]}")
-            print(f"down       {neigh[4]}")
-            print(f"down left  {neigh[5]}")
-            print(f"left       {neigh[6]}")
-            print(f"left top   {neigh[7]}")
+        for idx in to_flash:
+            puz_arr = flash(puz_arr, idx)
 
 
-        puz_arr = np.where(puz_arr < 10, puz_arr, 0) # returns an array where the 10s are 
-                                        # converted to 0
 
+    print(f"AFTER DAY {i}")
+    print(puz_arr)
         
