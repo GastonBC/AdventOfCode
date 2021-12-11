@@ -9,6 +9,62 @@ sample = [[5,4,8,3,1,4,3,2,2,3],
           [4,8,4,6,8,4,8,5,5,4],
           [5,2,8,3,7,5,1,5,2,6]]
 
+def neighbours(arr, idx):
+    '''Returns (top, 
+                topR, 
+                right, 
+                rightD, 
+                down, 
+                downL, 
+                left, 
+                leftT'''
+    
+    top = None
+    topR = None
+    right = None
+    rightD = None
+    down = None
+    downL = None
+    left = None
+    leftT = None
+
+    shape = np.shape(arr)
+    shape = (shape[0]-1, shape[1]-1) # make zero based
+
+    # Top
+    if idx[0] != 0:
+        top = arr[idx[0]-1, idx[1]]
+    
+    # Top right
+    if idx[0] != 0 and idx[1] != shape[1]:
+        topR = arr[idx[0]-1, idx[1]+1]
+    
+    # Right
+    if idx[1] != shape[1]:
+        right = arr[idx[0], idx[1]+1]
+    
+    # Right down
+    if idx[0] != shape[0] and idx[1] != shape[1]:
+        rightD = arr[idx[0]+1, idx[1]+1]
+    
+    # Down
+    if idx[0] != shape[0]:
+        down = arr[idx[0]+1, idx[1]]
+    
+    # Down left
+    if idx[0] != shape[0] and idx[1] != 0:
+        downL = arr[idx[0]+1, idx[1]-1]
+    
+    # Left
+    if idx[1] != 0:
+        left = arr[idx[0], idx[1]-1]
+    
+    # Left top
+    if idx[0] != 0 and idx[1] != 0:
+        leftT = arr[idx[0]-1, idx[1]-1]
+
+    return (top, topR, right, rightD, down, downL, left, leftT)
+
 import numpy as np
 
 
@@ -22,12 +78,18 @@ for i in range(steps):
 
         # find indices of elems bigger than 9
         for idx in np.transpose(np.nonzero(puz_arr > 9)):
-            top = [idx[0]-1:idx[1]]
-            right = None
-            down = None
-            left = None
-            top = None
-            print(f"idx {idx}, top {top}")
+            neigh = neighbours(puz_arr, idx)
+
+            print(f"idx        {idx}")
+            print(f"top        {neigh[0]}")
+            print(f"top right  {neigh[1]}")
+            print(f"right      {neigh[2]}")
+            print(f"right down {neigh[3]}")
+            print(f"down       {neigh[4]}")
+            print(f"down left  {neigh[5]}")
+            print(f"left       {neigh[6]}")
+            print(f"left top   {neigh[7]}")
+
 
         puz_arr = np.where(puz_arr < 10, puz_arr, 0) # returns an array where the 10s are 
                                         # converted to 0
