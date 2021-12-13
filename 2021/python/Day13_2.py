@@ -113,18 +113,21 @@ for inst in intructions:
 print_readable(arr)
 
 # visualization
-# non_zero = np.transpose(np.nonzero(arr))
-# x = non_zero[:, 0]
-# y = non_zero[:, 1]
+non_zero = np.transpose(np.nonzero(arr))
+x = non_zero[:, 0]
+y = non_zero[:, 1]
 
+# Points are reversed because it grows downwards
+x = -x
 
-# import matplotlib.pyplot as plt
-# plt.scatter(y, x)
-# plt.margins(2, 4)
-# plt.show()
+import matplotlib.pyplot as plt
+plt.scatter(y, x, marker="s")
+plt.margins(1, 6)
+plt.show()
 
 
 '''
+EBLUBRFH
 [['#' '#' '#' '#' ' ' '#' '#' '#' ' ' ' ' '#' ' ' ' ' ' ' ' ' '#' ' ' ' ' '#' ' ' '#' '#' '#' ' ' ' ' '#' '#' '#' ' ' ' ' '#' '#' '#' '#' ' ' '#' ' ' ' ' '#' ' ']
  ['#' ' ' ' ' ' ' ' ' '#' ' ' ' ' '#' ' ' '#' ' ' ' ' ' ' ' ' '#' ' ' ' ' '#' ' ' '#' ' ' ' ' '#' ' ' '#' ' ' ' ' '#' ' ' '#' ' ' ' ' ' ' ' ' '#' ' ' ' ' '#' ' ']
  ['#' '#' '#' ' ' ' ' '#' '#' '#' ' ' ' ' '#' ' ' ' ' ' ' ' ' '#' ' ' ' ' '#' ' ' '#' '#' '#' ' ' ' ' '#' ' ' ' ' '#' ' ' '#' '#' '#' ' ' ' ' '#' '#' '#' '#' ' ']
