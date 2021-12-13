@@ -39,7 +39,7 @@ def dfs(node, graph, visited, twice, counter = 0):
             if neighbor not in visited:
                 counter += dfs(neighbor, graph, visited | {neighbor}, twice)
             
-            # Im lost here
+            # This is for part 2. Can visit ONE small cave up to 2 times
             elif twice and neighbor not in {"start", "end"}:
                 counter += dfs(neighbor, graph, visited, False)
 
