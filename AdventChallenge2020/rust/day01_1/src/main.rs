@@ -1,8 +1,15 @@
 use puzzle_inputs;
 
 fn main() {
-    for n in puzzle_inputs::inputs::day01()
+    let puz_input = puzzle_inputs::inputs::day01();
+
+    for n in &puz_input
     {
-        println!("{}", n)
+        let result = 2020-n;
+        if puz_input.contains(&result)
+        {
+            println!("winning number is: {}", result*n);
+            return;
+        }
     }
 }
