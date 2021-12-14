@@ -13,9 +13,11 @@ pub mod inputs
         return lines;   
     }
 
-    pub fn day02()
+    pub fn day02() -> Vec<String>
     {
         let path = "../puzzle_inputs/src/txtfiles/day02.txt";
-        
+        let data = fs::read_to_string(path).expect("Unable to read file");
+        let lines:Vec<String> = data.lines().map(|x| x.parse::<String>().unwrap()).collect();
+        return lines;
     }
 }

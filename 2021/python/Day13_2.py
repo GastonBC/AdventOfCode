@@ -1,28 +1,6 @@
 import numpy as np
 from Inputs import Day13_Instructions, Day13_Points
-
-sample = '''6,10
-0,14
-9,10
-0,3
-10,4
-4,11
-6,0
-6,12
-4,1
-0,13
-10,12
-3,4
-3,0
-8,4
-1,10
-2,14
-8,10
-9,0'''
-
-sample_inst = '''fold along y=7
-fold along x=5'''
-
+import matplotlib.pyplot as plt
 def print_readable(arr):
     ary = np.where(arr == 0, " ", "#")
     print(ary)
@@ -54,7 +32,8 @@ def fold_vert(ary, index):
         return ary1 + ary2
 
 def fold_horiz(ary, index):
-    # split arr horizontally
+    # split arr horizontally, creates 3 arrays, middle one is 
+    # the cut
     part_arrs = np.split(ary, [index, index+1], axis=1)
 
     ary1 = part_arrs[0]
@@ -83,16 +62,13 @@ def fold_horiz(ary, index):
 xlst = []
 ylst = []
 
-points = sample.splitlines()
-intructions = sample_inst.splitlines()
-
 points = Day13_Points().splitlines()
 intructions = Day13_Instructions().splitlines()
 
 for line in points:
-    x,y = line.split(',')
-    xlst.append(int(y))
-    ylst.append(int(x))
+    y,x = line.split(',')
+    xlst.append(int(x))
+    ylst.append(int(y))
     
 arr = np.zeros([max(xlst)+1, max(ylst)+1])
 
@@ -109,7 +85,8 @@ for inst in intructions:
 
     elif "y" in inst:
         arr = fold_vert(arr, int(fold_idx))
-        
+    
+    
 print_readable(arr)
 
 # visualization
@@ -119,8 +96,6 @@ y = non_zero[:, 1]
 
 # Points are reversed because it grows downwards
 x = -x
-
-import matplotlib.pyplot as plt
 plt.scatter(y, x, marker="s")
 plt.margins(1, 6)
 plt.show()
