@@ -50,11 +50,7 @@ for line in input_rules:
     result = ([cond[0]+res_, res_+cond[1]])
     rules[cond] = result
     rules_count[cond] = 0
-
-    # Set up characters in the dict
-    ch_occ[cond[0]] = 0
-    ch_occ[cond[1]] = 0
-    ch_occ[res_] = 0
+    
 
 # Template line, after the dicts initialization
 # to be able to add counters easy
@@ -84,12 +80,13 @@ for step in range(steps):
             # The original pair gets used
             rules_count[rl] -= rule_count_copy[rl]
 
-
+# For each character in every pair, add it's count to 
+# the character occurrences dict
 for rl in rules_count:
     # first char
-    ch_occ[rl[0]] += rules_count[rl]
+    ch_occ[rl[0]] = ch_occ.get(rl[0], 0) + rules_count[rl]
     # second 
-    ch_occ[rl[1]] += rules_count[rl]
+    ch_occ[rl[1]] = ch_occ.get(rl[1], 0) + rules_count[rl]
 
 
 # Round .5 values up
