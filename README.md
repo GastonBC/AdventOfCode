@@ -1,2 +1,2 @@
-# AdventOfCode2021
+# AdventOfCode
 https://adventofcode.com/ answers
