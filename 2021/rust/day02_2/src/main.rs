@@ -9,7 +9,7 @@ fn main()
 
     for (action, val) in puzzle_inputs::inputs::day02()
     {
-        match action 
+        match action.as_str()
         {
             "forward" => sub.forward(val),
             "down" => sub.down(val),

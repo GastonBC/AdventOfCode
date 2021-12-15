@@ -30,9 +30,7 @@ def poly_length(poly):
 puz_input = Inputs.Day14()
 # puz_input = sample
 
-rules = dict()
-rules_count = dict()
-ch_occ = dict()
+rules, rules_count, ch_occ = dict()
 
 input_template = puz_input.splitlines()[0]
 input_rules = puz_input.splitlines()[1:]

@@ -25,7 +25,7 @@ fn get_points(ch_stack: &Vec<char>) -> i64
     return score;
 }
 
-fn check(chunks: &str) -> i64
+fn check(chunks: &String) -> i64
 {
     let mut stack: Vec<char> = Vec::new();
 
@@ -119,7 +119,7 @@ fn main() {
 
     for chunk in puz_input
     {
-        let score = check(chunk);
+        let score = check(&chunk);
         if score != 0
         {
             scores.push(score);
