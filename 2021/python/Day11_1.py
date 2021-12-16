@@ -13,7 +13,7 @@ sample = [[5,4,8,3,1,4,3,2,2,3],
 import numpy as np
 import Inputs
 
-puz_arr = np.array(Inputs.Day11())
+puz_arr = Inputs.Day11()
 steps = 101
 total_flashes = 0
 
@@ -51,5 +51,7 @@ for i in range(1, steps):
     total_flashes+=len(flashed)
 
 print(f"AFTER DAY {i}: {total_flashes} flashes")
+
+assert total_flashes == 1757
         
 '''AFTER DAY 100: 1757 flashes'''

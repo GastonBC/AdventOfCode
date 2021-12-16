@@ -1,9 +1,9 @@
 import numpy as np
 import Inputs
 
-number_input = Inputs.Day04_Numbers()
-
-game_boards = Inputs.Day04_Boards()
+puz_input = Inputs.Day04()
+number_input = puz_input[0]
+game_boards = puz_input[1]
 
 last_called_number = None
 winning_board = None

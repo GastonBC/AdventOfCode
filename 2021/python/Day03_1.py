@@ -1,30 +1,17 @@
 import Inputs
-from collections import Counter
+import numpy as np
 
 power_input = Inputs.Day03()
 
 gamma = ""
 epsilon = ""
+rows, cols = power_input.shape
+
+for col in range(cols):
+    gamma += str(np.bincount(power_input[:,col]).argmax())
+    epsilon += str(np.bincount(power_input[:,col]).argmin())
 
 
-for idx in range(0, len(power_input[0])):
-    count_0 = 0
-    count_1 = 0
-
-    for byt in power_input:
-        if byt[idx] == "0":
-            count_0 += 1
-
-        elif byt[idx] == "1":
-            count_1 += 1
-
-    if count_0 > count_1:
-        gamma += "0"
-        epsilon += "1"
-
-    elif count_0 < count_1:
-        gamma += "1"
-        epsilon += "0"
 
 print("Gamma in binary: {}".format(gamma))
 print("Epsilon in binary: {}".format(epsilon))

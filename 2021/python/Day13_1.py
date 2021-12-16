@@ -1,5 +1,5 @@
 import numpy as np
-from Inputs import Day13_Instructions, Day13_Points
+import Inputs
 
 sample = '''6,10
 0,14
@@ -86,8 +86,8 @@ ylst = []
 points = sample.splitlines()
 intructions = sample_inst.splitlines()
 
-points = Day13_Points().splitlines()
-intructions = Day13_Instructions().splitlines()
+points = Inputs.Day13()[0].splitlines()
+intructions = Inputs.Day13()[1].splitlines()
 
 for line in points:
     x,y = line.split(',')
