@@ -13,7 +13,7 @@ for idx, m in enumerate(measurements):
 
 print(increase_count)
 
-'''1715'''
+assert increase_count == 1715
 
 # visualization
 import matplotlib.pyplot as plt

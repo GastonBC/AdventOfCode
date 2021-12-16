@@ -4,14 +4,14 @@ pub mod inputs
     
     pub fn day01() -> Vec<i32>
     {
-        let path = "../puzzle_inputs/src/txtfiles/day01.txt";
+        let path = "../../txtfiles/day01.txt";
         let data = fs::read_to_string(path).expect("Unable to read file");
         data.lines().map(|x| x.parse::<i32>().unwrap()).collect()
     }
     
     pub fn day02() -> Vec<(String, i32)>
     {
-        let path = "../puzzle_inputs/src/txtfiles/day02.txt";
+        let path = "../../txtfiles/day02.txt";
         let data = fs::read_to_string(path).expect("Unable to read file");
 
         let mut out_vec: Vec<(String, i32)> = Vec::new();
@@ -25,16 +25,16 @@ pub mod inputs
         return out_vec;
     }
 
-    pub fn day03() -> Vec<String>
+    pub fn day03() -> Vec<Vec<char>>
     {
-        let path = "../puzzle_inputs/src/txtfiles/day03.txt";
+        let path = "../../txtfiles/txtfiles/day03.txt";
         let data = fs::read_to_string(path).expect("Unable to read file");
-        data.lines().map(|x| x.to_string()).collect()
+        data.lines().map(|x| x.to_string().chars().collect()).collect()
     }
 
     pub fn day10() -> Vec<String>
     {
-        let path = "../puzzle_inputs/src/txtfiles/day10.txt";
+        let path = "../../txtfiles/day10.txt";
         let data = fs::read_to_string(path).expect("Unable to read file");
         data.lines().map(|x| x.to_string()).collect()
     }

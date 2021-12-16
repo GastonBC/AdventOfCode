@@ -56,6 +56,8 @@ print("Submarine forwards distance: {}".format(sub.x))
 print("Submarine depth: {}".format(sub.y))
 print("Result: {}".format(sub.x*sub.y))
 
+assert sub.x*sub.y == 2120749
+
 '''
 Submarine forwards distance: 2053
 Submarine depth: 1033

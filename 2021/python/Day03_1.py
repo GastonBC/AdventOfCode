@@ -34,7 +34,7 @@ print("Epsilon in int: {}".format(int(epsilon, 2)))
 print()
 print("Result: {}".format(int(gamma, 2)*int(epsilon, 2)))
 
-    
+assert int(gamma, 2)*int(epsilon, 2) ==  3277364
 
 '''
 Gamma in bytes: 101110111100

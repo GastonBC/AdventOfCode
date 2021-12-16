@@ -18,4 +18,4 @@ for idx, m in enumerate(measurements):
 
 print(increase_count)
 
-'''1739'''
+assert increase_count == 1739
