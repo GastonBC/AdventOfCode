@@ -1,142 +1,79 @@
-import Inputs
-from collections import Counter
-
-# # not working, seems to be a problem when there are 2 elements remaining in a list
-
-# def most_common_at_idx(idx, lst):
-#     idx_lst = []
-#     for item in lst:
-#         idx_lst.append(item[idx])
-#     return most_common_n(idx_lst)[-1] #return -1 index to prevent the "-" from passing
-
-# def least_common_at_idx(idx, lst):
-#     idx_lst = []
-
-#     for item in lst:
-#         idx_lst.append(item[idx])
-
-#     return least_common(idx_lst)
-
-# def most_common_n(lst):
-#     data = Counter(lst)
-
-#     two_most_common = data.most_common(2)
-#     # draw condition, draw in the counting
-#     if two_most_common[0][1] == two_most_common[1][1]:
-#         return '-1'
-
-#     return two_most_common[0][0]
-
-# def least_common(lst):
-#     common = most_common_n(lst)
-
-#     # draw condition
-#     if common == "-1":
-#         return '0'
-
-#     elif common == "1":
-#         return "0"
-
-#     elif common == "0":
-#         return "1"
-
-# sample = [
-#     "00100",
-#     "11110",
-#     "10110",
-#     "10111",
-#     "10101",
-#     "01111",
-#     "00111",
-#     "11100",
-#     "10000",
-#     "11001",
-#     "00010",
-#     "01010"
-# ]
-
-# power_input = Inputs.Day03()
-# # power_input = sample
-
-# # o2_rating
-# # co2_rating
-# # life_rating = o2_rating*co2_rating
-
-# # start with all the values
-# # gets the most number each digit
-# o2_rating = power_input.copy()
-# o2_code = ""
-
-# # gets the least number each digit
-# co2_rating = power_input.copy()
-# co2_code = ""
-
-# for idx in range(0, len(power_input[0])):
-#     # --- o2 ---
-#     if len(o2_rating) == 1:
-#         # o2_code = o2_rating[0] # THIS DOESN'T WORK WHY
-#         break
-
-#     if len(o2_rating) == 2: # TODO this is to be fixed, the filter does not remove items
-#                             # if only two items and a it's draw is left
-#         o2_code = [i for i in o2_rating if i[-1] == "1"][0]
-#         break
-
-#     char = most_common_at_idx(idx, o2_rating)
-#     for item in o2_rating.copy():
-#         if item[idx] != char:
-#             o2_rating.remove(item)
-            
-
-# # --- co2 ---
-# for idx in range(0, len(power_input[0])):
-    
-#     if len(co2_rating) == 1:
-#         co2_code = co2_rating[0]
-#         break
-
-#     char = least_common_at_idx(idx, co2_rating)
-
-#     for item in co2_rating.copy():
-#         if item[idx] != char:
-#             co2_rating.remove(item)
-
-
-# ------------------
 import numpy as np
+import Inputs
 
-power_input = Inputs.Day03()
+def the_common(arr, col, least = False):
+    '''Returns the most common number (1 or 0) at the given
+    column. If least is true, returns the least common.'''
+    rows, _ = arr.shape
+    col_sum = arr.sum(axis=0)
 
-gamma = ""
-epsilon = ""
+    # More 0s than 1s
+    if col_sum[col] < rows/2:
+        if least: return 1
+        return 0
 
-rows, cols = power_input.shape
+    # More 1s than 0s
+    elif col_sum[col] > rows/2:
+        if least: return 0
+        return 1
+        
+    # Equal ammount
+    else:
+        return -1
+
+o2_code = Inputs.Day03()
+co2_code = Inputs.Day03()
+
+rows, cols = o2_code.shape
+
 
 for col in range(cols):
-    mx = np.bincount(power_input[:,col])
-    mn = np.bincount(power_input[:,col])
-
-    print(mx,mn)
+    most_com = the_common(o2_code, col)
     
-    # power_input = np.where(power_input[:col] == mx)
-    # print(power_input)
-    # if rows == 1:
-    #     break
+    if most_com == -1:
+        o2_code = o2_code[np.where(o2_code[:,col] == 1)]
+    
+    else:
+        # This 'where' keeps the rows that, at the specified column
+        # have a the most common number
+        o2_code = o2_code[np.where(o2_code[:,col] == most_com)]
         
+    # If only one row left, thats our answer
+    rows, cols = o2_code.shape
+    if rows == 1:
+        o2_code = o2_code.flatten()
+        break
+    
 
+# Need to have two for loops because they may break at different moments
+for col in range(cols):
+    most_com = the_common(co2_code, col, True)
+    # False return
+    if most_com == -1:
+        co2_code = co2_code[np.where(co2_code[:,col] == 0)]
+    
+    else:
+        co2_code = co2_code[np.where(co2_code[:,col] == most_com)]
+        
+    rows, cols = co2_code.shape
+    if rows == 1:
+        co2_code = co2_code.flatten()
+        break
+    
+# Remove brackets, spaces and commas
+# and finally convert to base 10
+o2_code = np.array2string(o2_code, separator="")[1:-1]
+co2_code = np.array2string(co2_code, separator="")[1:-1]
 
+print("o2_code in binary: {}".format(o2_code))
+print("co2_code in binary: {}".format(co2_code))
+print()
+print("o2_code in int: {}".format(int(o2_code, 2)))
+print("co2_code in int: {}".format(int(co2_code, 2)))
+print()
+print("Result: {}".format(int(o2_code, 2)*int(co2_code, 2)))
 
-# print(o2_code)
-# print(co2_code)
-
-# print("o2_code in binary: {}".format(o2_code))
-# print("co2_code in binary: {}".format(co2_code))
-# print()
-# print("o2_code in int: {}".format(int(o2_code, 2)))
-# print("co2_code in int: {}".format(int(co2_code, 2)))
-# print()
-# print("Result: {}".format(int(o2_code, 2)*int(co2_code, 2)))
-
+assert int(o2_code, 2)*int(co2_code, 2) == 5736383
 
 '''
 110111111111
