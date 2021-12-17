@@ -5,7 +5,7 @@ pub mod inputs
 
     pub fn day01() -> Vec<i32>
     {
-        let path = "../puzzle_inputs/src/txtfiles/day01.txt";
+        let path = "../../txtfiles/day01.txt";
 
         let data = fs::read_to_string(path).expect("Unable to read file");
         let lines:Vec<i32> = data.lines().map(|x| x.parse::<i32>().unwrap()).collect();
@@ -15,7 +15,7 @@ pub mod inputs
 
     pub fn day02() -> Vec<String>
     {
-        let path = "../puzzle_inputs/src/txtfiles/day02.txt";
+        let path = "../../txtfiles/day02.txt";
         let data = fs::read_to_string(path).expect("Unable to read file");
         let lines:Vec<String> = data.lines().map(|x| x.parse::<String>().unwrap()).collect();
         return lines;
