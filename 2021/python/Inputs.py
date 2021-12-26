@@ -100,3 +100,7 @@ def Day14():
 def Day15():
     import numpy as np
     return np.genfromtxt("txtfiles/day15.txt", delimiter=1, dtype=np.uint16)
+
+def Day25():
+    import numpy as np
+    return np.genfromtxt(r"2021\txtfiles\day25.txt", delimiter=1, dtype=np.str)
