@@ -72,4 +72,4 @@ for pairs in GAMES:
 
 print(total_score)
 
-# assert total_score == 14375
+assert total_score == 10274
