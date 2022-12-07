@@ -18,18 +18,11 @@ for pair in input:
     e1_section_start, e1_section_end = int(elve1.split("-")[0]), int(elve1.split("-")[1])
     e2_section_start, e2_section_end = int(elve2.split("-")[0]), int(elve2.split("-")[1])
 
-    range_e1 = [*range(int(e1_section_start), int(e1_section_end)+1)]
-    range_e2 = [*range(int(e2_section_start), int(e2_section_end)+1)]
+    range_e1 = {*range(e1_section_start, e1_section_end+1)}
+    range_e2 = {*range(e2_section_start, e2_section_end+1)}
 
-
-    # elve 1 fully contained in elve 2
-    if e1_section_start >= e2_section_start and e1_section_end <= e2_section_end:
+    if range_e1.issubset(range_e2) or range_e2.issubset(range_e1):
         pairs_contained += 1
-
-    # elve 2 fully contained in elve 1
-    elif e1_section_start <= e2_section_start and e1_section_end >= e2_section_end:
-        pairs_contained += 1
-
 
 print(pairs_contained)
 
