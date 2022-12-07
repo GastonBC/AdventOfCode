@@ -17,12 +17,12 @@ for pair in input:
 
     e1_section_start, e1_section_end = int(elve1.split("-")[0]), int(elve1.split("-")[1])
     e2_section_start, e2_section_end = int(elve2.split("-")[0]), int(elve2.split("-")[1])
-
-    range_e1 = [*range(int(e1_section_start), int(e1_section_end)+1)]
-    range_e2 = [*range(int(e2_section_start), int(e2_section_end)+1)]
+    
+    range_e1 = {*range(int(e1_section_start), int(e1_section_end)+1)}
+    range_e2 = {*range(int(e2_section_start), int(e2_section_end)+1)}
 
     # if any item is contained in the other list, then it's overlapping
-    if list(set(range_e1).intersection(range_e2)):
+    if range_e1.intersection(range_e2):
         pairs_contained += 1
 
 print(pairs_contained)
