@@ -9,3 +9,7 @@ def Day02():
 def Day03():
     with open(r'2022\txtfiles\day03.txt', "r") as input:
         return [x for x in input.read().splitlines()]
+
+def Day04():
+    with open(r'2022\txtfiles\day04.txt', "r") as input:
+        return [x for x in input.read().splitlines()]
