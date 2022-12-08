@@ -1,0 +1,11 @@
+import Inputs
+
+Input = Inputs.Day06()
+
+for idx in range(0, len(Input)):
+    sequence = Input[idx:idx+14]
+    if len(set(sequence)) == 14:
+        print(sequence, idx+14)
+        assert idx+4 == 3452
+        break
+

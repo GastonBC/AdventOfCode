@@ -17,3 +17,11 @@ def Day04():
 def Day05():
     with open(r'2022\txtfiles\day05.txt', "r") as input:
         return [x for x in input.read().split("\n\n")]
+
+def Day06():
+    with open(r'2022\txtfiles\day06.txt', "r") as input:
+        return input.read()
+
+def Day07():
+    with open(r'2022\txtfiles\day07.txt', "r") as input:
+        return input.read().splitlines()

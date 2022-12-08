@@ -40,10 +40,14 @@ for instruction in Input[1].splitlines():
     pos_init = int(pos.split(" to ")[0])
     pos_end  = int(pos.split(" to ")[1])
 
-    for i in range(0, qtity):
-        stacks[pos_end].append(stacks[pos_init][-1])
-        stacks[pos_init].pop()
+    moving_stack = stacks[pos_init][-qtity:]
+    moving_stack.reverse()
 
+    # remove items from list
+    stacks[pos_init] = stacks[pos_init][:-qtity]
+
+    # append the moving_stack list as individual items (reversed bc it's one by one)
+    stacks[pos_end].extend(moving_stack)
 
 message = ""
 
