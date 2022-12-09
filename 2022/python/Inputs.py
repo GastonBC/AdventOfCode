@@ -25,3 +25,7 @@ def Day06():
 def Day07():
     with open(r'2022\txtfiles\day07.txt', "r") as input:
         return input.read().splitlines()
+
+def Day08():
+    import numpy as np
+    return np.genfromtxt(r"2022\txtfiles\day08.txt", delimiter=1, dtype=np.int32)
